@@ -16,7 +16,7 @@ function [satelliteOrbits] = generateFlowerConstellation(Np, Nd, Ns, omega, incl
     mu = 398600.4418; % Earth's gravitational parameter in km^3/s^2
 
     % Calculate the semimajor axis of the satellites' orbits
-    semimajorAxis = (Re + perigeeAltitude) / 1000; % in kilometers
+    semimajorAxis = (Re + perigeeAltitude); % in kilometers
 
     % Calculate the orbital period in seconds
     T = Nd * 86164.09054; % Number of sidereal days (Nd) converted to seconds
@@ -52,7 +52,8 @@ function [satelliteOrbits] = generateFlowerConstellation(Np, Nd, Ns, omega, incl
 
         % Store the orbital parameters for the current satellite
         satelliteOrbits{i} = struct('semimajorAxis', semimajorAxis, 'eccentricity', 1 - Re / (Re + perigeeAltitude),...
-            'inclination', inclination_rad, 'ascendingNode', ascendingNode, 'argumentOfPerigee', omega_rad, 'meanAnomaly', M_0);
+            'inclination', inclination_rad, 'ascendingNode', ascendingNode, 'argumentOfPerigee', omega_rad, 'meanAnomaly', M_0, ...
+            'apogeeAltitude', semimajorAxis * 2 - perigeeAltitude);
     end
 end
 
@@ -74,11 +75,11 @@ end
 
 
 
-Np = 3; % Number of petals
-Nd = 2; % Number of sidereal days to repeat the ground track
-Ns = 6; % Number of satellites
-omega = 30; % Argument of perigee in degrees
-inclination = 45; % Orbit inclination in degrees
-perigeeAltitude = 500; % Perigee altitude in kilometers
-
-satelliteOrbits = generateFlowerConstellation(Np, Nd, Ns, omega, inclination, perigeeAltitude);
+% Np = 3; % Number of petals
+% Nd = 2; % Number of sidereal days to repeat the ground track
+% Ns = 6; % Number of satellites
+% omega = 30; % Argument of perigee in degrees
+% inclination = 45; % Orbit inclination in degrees
+% perigeeAltitude = 500; % Perigee altitude in kilometers
+% 
+% satelliteOrbits = generateFlowerConstellation(Np, Nd, Ns, omega, inclination, perigeeAltitude);

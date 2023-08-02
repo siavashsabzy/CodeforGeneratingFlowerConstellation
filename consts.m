@@ -1,0 +1,12 @@
+Re = 6378.1363;        %# Earth radius
+J2 = 1.0826269e-3;     %# Earth J2
+MU = 398600.4418;      %# Earth gravitational coefficient
+we = 7.2921158553e-5;  %# Earth angular rate
+Np = 29;
+Nd = 2;
+Ns = 18;
+Fn = 1;
+Fd = 10;
+w =  0; % radians
+i = 45*pi/180; % radians
+hp = 500;
