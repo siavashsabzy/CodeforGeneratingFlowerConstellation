@@ -1,0 +1,11 @@
+function Rcv = ss_user_geodetic_ecef(Stat)
+latit  =  Stat(1);   % ground station latitude
+longi  =  Stat(2);   % ground station longitude
+altit  =  Stat(3);   % ground station height
+e2     =  0.00669437999014132;   % Square of eccentricity
+CosLat =  cosd( latit );         % (Co)sine of geodetic latitude
+SinLat =  sind( latit );
+N      =  6378.137 / sqrt( 1.0 - e2 * SinLat * SinLat );
+Rcv(1) =  ( N + altit) * CosLat * cosd( longi );
+Rcv(2) =  ( N + altit) * CosLat * sind( longi );
+Rcv(3) =  ( ( 1.0 - e2 ) * N + altit ) * SinLat;
